@@ -10,7 +10,7 @@ getDetails_URL = "https://store.steampowered.com/app/"
 def main():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("SELECT appid FROM apps WHERE status = false")
+    cursor.execute("SELECT appid FROM apps WHERE status = 1")
 
 
 main()
