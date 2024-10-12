@@ -23,7 +23,7 @@ if response.status_code == 200:
     CREATE TABLE IF NOT EXISTS
     apps (
         appid INTEGER PRIMARY KEY,
-        status INTEGER DEFAULT 0
+        status INTEGER DEFAULT 1
     )
     ''')
     conn.commit()
