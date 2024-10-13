@@ -22,7 +22,7 @@ def main():
         count += 1
         check(row[0],cursor)
         conn.commit()
-        if count==100000:
+        if count==30000:
             break
     conn.close()
 
