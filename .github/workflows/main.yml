@@ -1,0 +1,22 @@
+name: 更新
+on:
+  workflow_dispatch:
+env:
+  TZ: Asia/Shanghai
+  CI: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update applist
+        run: python Src/getAppList.py
+      - name: Update data
+        run: python Src/getDetails.py
+        
+      - uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: 'Update'
+          push: origin main --force
