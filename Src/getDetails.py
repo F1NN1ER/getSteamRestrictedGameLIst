@@ -28,20 +28,17 @@ def main():
 
 
 def check(appid,cursor):
-
     url = f"{getDetails_URL}{appid}"
     html_response = requests.get(url, allow_redirects=False, verify=False, cookies=cookie)
-
-    # 检查是否重定向到 store.steampowered.com 被BAN游戏受限
-    if 'Location' in html_response.headers and 'store.steampowered.com' in html_response.headers['Location']:
+    html_text = html_response.text
+    soup = BeautifulSoup(html_text, 'html.parser')
+    # 检查是否重定向到主页 被下架游戏受限
+    if html_response.status_code==302:
         print(f"appid {appid}无有效商店页面")
         cursor.execute("UPDATE apps SET status = 3 WHERE appid = ?", (appid,))
         return
 
-    html_text = html_response.text
-    soup = BeautifulSoup(html_text, 'html.parser')
     div = soup.find('div', class_='game_area_details_specs_ctn learning_about')
-
     if div:
         label_div = div.find('div', class_='label') # type: ignore
         if label_div and 'Profile Features Limited' in label_div.text:

@@ -1,15 +1,14 @@
 import os
 import sqlite3
 import time
-
 import requests
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'app_list.db')
-
 os.makedirs(os.path.dirname(db_path), exist_ok=True)
-
 getAppList_URL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/"
-response = requests.get(getAppList_URL)
+response = requests.get(getAppList_URL, verify=False)
 
 if response.status_code == 200:
     data = response.json()
