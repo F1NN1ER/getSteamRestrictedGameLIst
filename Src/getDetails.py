@@ -19,7 +19,7 @@ def main():
     rows = cursor.execute("SELECT appid FROM apps WHERE status = 1").fetchall()
     for row in rows:
         check(row[0],cursor)
-    conn.commit()
+        conn.commit()
     conn.close()
 
 
