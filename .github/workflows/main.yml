@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Update applist
         run: python Src/getAppList.py
+      - name: install requirment
+        run: pip install beautifulsoup4
       - name: Update data
         run: python Src/getDetails.py
         
