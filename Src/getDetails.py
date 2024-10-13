@@ -14,12 +14,16 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def main():
+    count = 0
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     rows = cursor.execute("SELECT appid FROM apps WHERE status = 1").fetchall()
     for row in rows:
+        count += 1
         check(row[0],cursor)
         conn.commit()
+        if count==10000:
+            break
     conn.close()
 
 
