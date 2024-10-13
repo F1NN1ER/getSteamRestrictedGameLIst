@@ -27,7 +27,7 @@ if response.status_code == 200:
     )
     ''')
     conn.commit()
-
+    #状态码 0:正常 1:待查 2:受限 3:无效
     new_count = 0
     start_time = time.time()
 
@@ -47,3 +47,4 @@ if response.status_code == 200:
     print(f"总耗费时间: {total_time:.6f} 秒")
 else:
     print(f"请求失败，状态码: {response.status_code}")
+
