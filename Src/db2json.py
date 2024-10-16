@@ -8,7 +8,7 @@ import sqlite3
 
 db_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'app_list.db')
 fulllist_file = Path(os.path.dirname(os.path.dirname(__file__))) / 'data' / 'fulllist.json'
-normallist_file = Path(os.path.dirname(os.path.dirname(__file__))) / 'data' / 'fulllist.json'
+normallist_file = Path(os.path.dirname(os.path.dirname(__file__))) / 'data' / 'normalist.json'
 restrictedlist_file = Path(os.path.dirname(os.path.dirname(__file__))) / 'data' / 'restrictedlist.json'
 learninglist_file = Path(os.path.dirname(os.path.dirname(__file__))) / 'data' / 'learninglist.json'
 banlist_file = Path(os.path.dirname(os.path.dirname(__file__))) / 'data' / 'banlist.json'
@@ -63,5 +63,5 @@ fulllist_dict = [{"appid": row[0], "status": row[1]} for row in fulllist]
 with open(fulllist_file, 'w', encoding='utf-8') as f:
     json.dump(fulllist_dict, f, ensure_ascii=False, indent=4)
 
-    
+
 conn.close()
